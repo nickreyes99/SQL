@@ -1,7 +1,10 @@
 --Create a clothes store database
 
-CREATE TABLE clothes (id INTEGER PRIMARY KEY, item TEXT,
-Aisle INTEGER, Price INTEGER);
+CREATE TABLE clothes (
+id INTEGER PRIMARY KEY, 
+item TEXT,
+Aisle INTEGER, 
+Price INTEGER);
 
 
 INSERT INTO clothes VALUES 
@@ -31,4 +34,10 @@ FROM clothes
 WHERE Aisle = 6;
 
 --what is the total price of all items bought?
-SElECT SUM(price) FROM clothes;
+SElECT SUM(price) 
+FROM clothes;
+
+--Order all the products offered in your store from highest to lowest price.
+SELECT * 
+FROM clothes
+ORDER BY price DESC;
