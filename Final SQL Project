@@ -1,3 +1,6 @@
+#In this SQL code, I'm querying a database for a digital media store data to answer questions about artists, albums, media tracks, invoices, and customers.
+
+
 #1. Show Customers (their full names, customer ID, and country) who are not in the US.
 SELECT FirstName, LastName, CustomerId, Country 
 FROM chinook.customers 
