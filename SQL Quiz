@@ -1,0 +1,70 @@
+1. Select all columns from horoscopes for Pisces and Aquarius from the years 2010 to 2014.
+
+SELECT *
+FROM horoscope
+WHERE sign IN ('Pisces', 'Aquarius')
+AND year BETWEEN 2010 AND 2014;
+
+2. Show all pets (show the columns name, type, year_born) whose name begins with an 'M' together with their owners (the columns name, year_born).
+Rename the column year_born from the table pet as pet_year_born and the column year_born from the table owner as owner_year_born.
+
+SELECT pet.name, pet.type, pet.year_born AS pet_year_born, owner.name, owner.year_born AS 
+owner_year_born
+FROM pet
+JOIN owner
+ON owner_id = owner.id
+WHERE pet.name LIKE 'M%';
+
+3. Show students' names (column person) together with the number of essays they handed in (name the column number_of_essays).
+their average number of points (name the column avg_points). Show only those students whose average number of points is more than 80.
+
+SELECT person, COUNT(*) AS number_of_essays, AVG(points) AS avg_points
+FROM essay
+GROUP BY person
+HAVING AVG(points) > 80;
+
+4. Show all coaches together with the players they train, show all columns for coaches and players. 
+Show unemployed coaches with NULLs instead of player data.
+
+SELECT *
+FROM coach
+LEFT JOIN player
+ON player_id = player.id;
+
+5. Show all columns for the prisons where there is at least one prisoner above 50 years of age.
+
+SELECT *
+FROM prison
+WHERE EXISTS (
+  SELECT *
+  FROM prisoner
+  WHERE prison_id = prison.id
+  AND age > 50
+  );
+  
+ 6. Show all columns for the products which are gluten free and vegetarian at the same time.
+
+SELECT *
+FROM vegetarian_product
+INTERSECT
+SELECT *
+FROM gluten_free_product;
+
+7. The owner of the shop would like to see each customer's id (name the column cus_id). name (name the column cus_name).
+id of their latest purchase (name the column latest_purchase_id). the total quantity of all flowers purchased by the customer, in all purchases, 
+not just the last purchase (name the column all_items_purchased). Remember, you need not use all columns from all the tables here – choose them carefully.
+
+SELECT c.id AS cus_id, c.name AS cus_name, (
+  SELECT MAX(purchase.id)
+  FROM purchase
+  WHERE purchase.customer_id = c.id )
+  AS latest_purchase_id, (
+    SELECT SUM(quantity)
+    FROM purchase_item
+    WHERE purchase_id IN (
+      SELECT id
+      FROM purchase
+      WHERE customer_id = c.id)
+    ) AS all_items_purchased
+    FROM customer AS c;
+ 
