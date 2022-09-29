@@ -1,0 +1,54 @@
+# Show the artist name, song name, content, and the review that is higher than 8 
+
+SELECT artist, title, content, score
+FROM reviews AS rev
+INNER JOIN content AS con
+ON rev.reviewid = con.reviewid
+WHERE score > 8;
+
+# Find the artist and the label they're signed too
+
+SELECT artist, label
+FROM artists AS art
+INNER JOIN labels AS lab
+ON art.reviewid = lab.reviewid;
+
+# Find all artists whose genre is rock with there song and there rating
+
+SELECT artist, title, genre, score
+FROM artists AS art
+INNER JOIN genres AS gen
+ON art.reviewid = gen.reviewid
+INNER JOIN reviews AS rev
+ON art.reviewid = rev.reviewid
+WHERE genre = 'rock';
+
+# Show all artists whose name begins with 'N' and there genre is rap also with there lable and year 
+
+SELECT artist, genre, label, year
+FROM artists AS art
+INNER JOIN genres AS gen
+ON art.reviewid = gen.reviewid
+INNER JOIN labels AS lab
+ON art.reviewid = lab.reviewid
+INNER JOIN years AS ye
+ON art.reviewid = ye.reviewid
+WHERE artist LIKE 'N%' AND genre = 'rap';
+
+# Select all the labels 50 cent was signed too
+
+SELECT DISTINCT artist, label
+FROM artists AS art
+INNER JOIN labels AS lab
+ON art.reviewid = lab.reviewid
+WHERE artist = '50 cent';
+
+
+
+
+
+
+
+
+
+
