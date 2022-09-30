@@ -1,0 +1,87 @@
+#1. Show all the countries that start with the letter 'U' and have a population bigger than 50 million 
+
+SELECT country, population
+FROM countries_database."countries of the world"
+WHERE country LIKE 'U%' AND population >= 50000000
+ORDER BY population DESC;
+
+
+#2. What the total population of the world 
+
+SELECT SUM(population)
+FROM countries_database."countries of the world";
+
+
+#3. What is the country with the biggest population
+
+SELECT country, MAX(population) AS biggiest_population
+FROM countries_database."countries of the world";
+
+
+#4. what country has the highest birthrate and deathrate
+
+SELECT country, birthrate, deathrate
+FROM countries_database."countries of the world"
+GROUP BY country
+ORDER BY birthrate DESC, deathrate DESC
+LIMIT 1;
+
+
+#5. List the 9 and 10 largest countries by their population
+
+SELECT country, population
+FROM countries_database."countries of the world"
+GROUP BY country
+ORDER BY population DESC
+LIMIT 2 OFFSET 8;
+
+#6. Find the population of all regions
+
+SELECT region, population
+FROM countries_database."countries of the world"
+GROUP BY region;
+
+#7. whats the population for the countries starting with the letter 'A' 
+
+SELECT country, population
+FROM countries_database."countries of the world"
+WHERE country LIKE 'A%'
+GROUP BY country;
+
+#8. How many countries have a population of at least 50 million
+
+SELECT COUNT(country) AS number_of_countries
+FROM countries_database."countries of the world"
+WHERE population >= 50000000;
+
+#9. For each region show the region and number of countries 
+
+SELECT region, COUNT(country) AS number_of_countries
+FROM countries_database."countries of the world"
+GROUP BY region;
+
+#10. List the regions that have a total population of at least 250 million 
+
+SELECT region
+FROM countries_database."countries of the world"
+GROUP BY region
+HAVING SUM(population) >= 250000000;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
