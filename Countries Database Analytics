@@ -12,10 +12,11 @@ SELECT SUM(population)
 FROM countries_database."countries of the world";
 
 
-#3. What is the country with the biggest population
+#3. Show the country with the biggest population
 
-SELECT country, MAX(population) AS biggiest_population
-FROM countries_database."countries of the world";
+SELECT country
+FROM "countries of the world"
+WHERE population =(SELECT MAX(population) FROM "countries of the world");
 
 
 #4. what country has the highest birthrate and deathrate
@@ -66,10 +67,6 @@ SELECT region
 FROM countries_database."countries of the world"
 GROUP BY region
 HAVING SUM(population) >= 250000000;
-
-
-
-
 
 
 
