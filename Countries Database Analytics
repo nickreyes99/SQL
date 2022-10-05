@@ -23,7 +23,7 @@ FROM countries_database."countries of the world";
 SELECT country, birthrate, deathrate
 FROM countries_database."countries of the world"
 GROUP BY country
-ORDER BY birthrate DESC, deathrate DESC
+ORDER BY birthrate DESC, deathrate 
 LIMIT 1;
 
 
