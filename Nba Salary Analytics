@@ -12,13 +12,21 @@ FROM nba_salary.Seasons_Stats
 GROUP BY player
 HAVING AVG(pts) > 500;
 
-#3. List the top 50 highest paid nba players and their salaries in millions of dollars 
+#3. Show players who scored more than the average points scored by all players
+
+SELECT *
+FROM nba_salary.Seasons_Stats 
+WHERE pts > (SELECT AVG(pts)
+            FROM nba_salary.Seasons_Stats);
+
+
+#4. List the top 50 highest paid nba players and their salaries in millions of dollars 
 
 SELECT player, season17_18/1000000 AS salary_millions
 FROM nba_salary.NBA_season1718_salary
 LIMIT 50;
 
-#4. Show me the top 10 highest scoring players that are 25 and older
+#5. Show me the top 10 highest scoring players that are 25 and older
 
 SELECT player, age, pts
 FROM nba_salary.seasons_stats
@@ -26,14 +34,14 @@ WHERE age >= 25
 ORDER BY pts DESC
 LIMIT 10;
 
-#5. Show me all players from 1952 to 1953 who scored 1000 or more points
+#6. Show me all players from 1952 to 1953 who scored 1000 or more points
 
 SELECT player, pts, year
 FROM nba_salary.seasons_stats
 WHERE pts >= 1000 AND year BETWEEN 1952 AND 1953;
 
 
-#6. show the players who salary is more than the average salary earned by all players
+#7. show the players who salary is more than the average salary earned by all players
 
 SELECT *
 FROM nba_salary.NBA_season1718_salary
@@ -41,7 +49,7 @@ WHERE season17_18 > (SELECT AVG(season17_18)
 FROM nba_salary.NBA_season1718_salary);
 
 
-#7. find the players who earn the highest salary on each team 
+#8. find the players who earn the highest salary on each team 
 
 SELECT *
 FROM nba_salary.NBA_season1718_salary
@@ -49,13 +57,15 @@ WHERE (TM, season17_18) IN (SELECT Tm, MAX(season17_18)
                                 FROM nba_salary.NBA_season1718_salary
                                 GROUP BY Tm);
                                 
-#8. Find the players on each team who earn more than the avgerage salary for that team
+#9. Find the players on each team who earn more than the avgerage salary for that team
 
 SELECT *
 FROM nba_salary.NBA_season1718_salary AS n1
 WHERE season17_18 > (SELECT AVG(season17_18)
                         FROM nba_salary.NBA_season1718_salary AS n2
                         WHERE n1.Tm = n2.Tm);
+                        
+                        
                         
  
 
