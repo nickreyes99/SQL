@@ -1,24 +1,24 @@
-# select all coulmns from season stats for point guards and guards from the years 1950 to 1955 
+#1. select all coulmns from season stats for point guards and guards from the years 1950 to 1955 
 
 SELECT *
 FROM nba_salary.Seasons_Stats
 WHERE pos IN( 'PG', 'G')
 AND year BETWEEN 1950 AND 1955;
 
-# Show players names together with their avgerage points and number of assists but only players whose average number of points is 500 or more
+#2. Show players names together with their avgerage points and number of assists but only players whose average number of points is 500 or more
 
 SELECT player, COUNT(*) AS number_of_assists, AVG(pts) AS avg_points
 FROM nba_salary.Seasons_Stats
 GROUP BY player
 HAVING AVG(pts) > 500;
 
-# List the top 50 highest paid nba players and their salaries in millions of dollars 
+#3. List the top 50 highest paid nba players and their salaries in millions of dollars 
 
 SELECT player, season17_18/1000000 AS salary_millions
 FROM nba_salary.NBA_season1718_salary
 LIMIT 50;
 
-# Show me the top 10 highest scoring players that are 25 and older
+#4. Show me the top 10 highest scoring players that are 25 and older
 
 SELECT player, age, pts
 FROM nba_salary.seasons_stats
@@ -26,9 +26,36 @@ WHERE age >= 25
 ORDER BY pts DESC
 LIMIT 10;
 
-# Show me all players from 1952 to 1953 who scored 1000 or more points
+#5. Show me all players from 1952 to 1953 who scored 1000 or more points
 
 SELECT player, pts, year
 FROM nba_salary.seasons_stats
 WHERE pts >= 1000 AND year BETWEEN 1952 AND 1953;
+
+
+#6. show the players who salary is more than the average salary earned by all players
+
+SELECT *
+FROM nba_salary.NBA_season1718_salary
+WHERE season17_18 > (SELECT AVG(season17_18)
+FROM nba_salary.NBA_season1718_salary);
+
+
+#7. find the players who earn the highest salary on each team 
+
+SELECT *
+FROM nba_salary.NBA_season1718_salary
+WHERE (TM, season17_18) IN (SELECT Tm, MAX(season17_18)
+                                FROM nba_salary.NBA_season1718_salary
+                                GROUP BY Tm);
+                                
+#8. Find the players on each team who earn more than the avgerage salary for that team
+
+SELECT *
+FROM nba_salary.NBA_season1718_salary AS n1
+WHERE season17_18 > (SELECT AVG(season17_18)
+                        FROM nba_salary.NBA_season1718_salary AS n2
+                        WHERE n1.Tm = n2.Tm);
+                        
+ 
 
