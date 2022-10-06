@@ -10,7 +10,7 @@ AND year BETWEEN 1950 AND 1955;
 SELECT player, COUNT(*) AS number_of_assists, AVG(pts) AS avg_points
 FROM nba_salary.Seasons_Stats
 GROUP BY player
-HAVING AVG(pts) > 500;
+HAVING AVG(pts) >= 500;
 
 #3. Show players who scored more than the average points scored by all players
 
