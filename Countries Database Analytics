@@ -80,6 +80,10 @@ FROM countries_database."countries of the world"
 GROUP BY region
 HAVING SUM(population) >= 250000000;
 
+#12. Show the country name, population, and avgerage population of all the countries
+
+SELECT country, population, AVG(population) OVER () AS all_avg_population
+FROM "countries of the world";
 
 
 
