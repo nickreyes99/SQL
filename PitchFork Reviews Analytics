@@ -1,46 +1,46 @@
 #1. Show the artist name, song name, content, and the review that is higher than 8 
 
 SELECT artist, title, content, score
-FROM reviews AS rev
-JOIN content AS con
-ON rev.reviewid = con.reviewid
+FROM reviews AS r
+JOIN content AS c
+ON r.reviewid = c.reviewid
 WHERE score > 8;
 
 #2. Find the artist and the label they're signed too
 
 SELECT artist, label
-FROM artists AS art
-JOIN labels AS lab
-ON art.reviewid = lab.reviewid;
+FROM artists AS a
+JOIN labels AS l
+ON a.reviewid = l.reviewid;
 
 #3. Find all artists whose genre is rock with there song and there rating
 
 SELECT artist, title, genre, score
-FROM artists AS art
-JOIN genres AS gen
-ON art.reviewid = gen.reviewid
-JOIN reviews AS rev
-ON art.reviewid = rev.reviewid
+FROM artists AS a
+JOIN genres AS g
+ON a.reviewid = g.reviewid
+JOIN reviews AS r
+ON a.reviewid = r.reviewid
 WHERE genre = 'rock';
 
 #4. Show all artists whose name begins with 'N' and there genre is rap also with there lable and year 
 
 SELECT artist, genre, label, year
-FROM artists AS art
-JOIN genres AS gen
-ON art.reviewid = gen.reviewid
-JOIN labels AS lab
-ON art.reviewid = lab.reviewid
-JOIN years AS ye
-ON art.reviewid = ye.reviewid
+FROM artists AS a
+JOIN genres AS g
+ON a.reviewid = g.reviewid
+JOIN labels AS l
+ON a.reviewid = l.reviewid
+JOIN years AS y
+ON a.reviewid = y.reviewid
 WHERE artist LIKE 'N%' AND genre = 'rap';
 
 #5. Select all the labels 50 cent was signed too
 
 SELECT DISTINCT artist, label
-FROM artists AS art
-JOIN labels AS lab
-ON art.reviewid = lab.reviewid
+FROM artists AS a
+JOIN labels AS l
+ON a.reviewid = l.reviewid
 WHERE artist = '50 cent';
 
 
@@ -59,6 +59,34 @@ SELECT artist, AVG(score)
 FROM reviews
 GROUP BY artist
 HAVING AVG(score) >= 8.5;
+
+#8. Show artists whose author is andy beta
+
+SELECT artist
+FROM reviews
+WHERE author =(SELECT author
+                FROM reviews
+                WHERE author = 'andy beta');
+                
+          
+#9. Show artists and their score but only artists whose score is greater than the average score of all artists 
+
+SELECT artist, score
+FROM reviews
+WHERE score > (SELECT AVG(score)
+                FROM reviews);
+                
+               
+#10. find artists who published there songs in the year 2016 and month of september 
+
+SELECT a.artist, title, pub_date
+FROM artists AS a
+JOIN reviews AS r
+ON a.reviewid = r.reviewid
+WHERE pub_date BETWEEN '2016-09-01' AND '2016-09-31'
+GROUP BY a.artist;
+                
+                
 
 
 
