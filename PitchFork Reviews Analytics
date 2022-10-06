@@ -53,6 +53,13 @@ ON a.reviewid = r.reviewid
 WHERE title LIKE 'A%';
 
 
+#7.  Show artist name together with their average score but only artists whose score is 8.5 or more 
+
+SELECT artist, AVG(score)
+FROM reviews
+GROUP BY artist
+HAVING AVG(score) >= 8.5;
+
 
 
 
