@@ -19,7 +19,14 @@ FROM "countries of the world"
 WHERE population =(SELECT MAX(population) FROM "countries of the world");
 
 
-#4. what country has the highest birthrate and deathrate
+#4. Show the country with the smallest population
+
+SELECT country
+FROM "countries of the world"
+WHERE population =(SELECT MIN(population) FROM "countries of the world");
+        
+
+#5. what country has the highest birthrate and deathrate
 
 SELECT country, birthrate, deathrate
 FROM countries_database."countries of the world"
@@ -28,7 +35,7 @@ ORDER BY birthrate DESC, deathrate
 LIMIT 1;
 
 
-#5. List the 9 and 10 largest countries by their population
+#6. List the 9 and 10 largest countries by their population
 
 SELECT country, population
 FROM countries_database."countries of the world"
@@ -36,32 +43,37 @@ GROUP BY country
 ORDER BY population DESC
 LIMIT 2 OFFSET 8;
 
-#6. Find the population of all regions
+
+#7. Find the population of all regions
 
 SELECT region, population
 FROM countries_database."countries of the world"
 GROUP BY region;
 
-#7. whats the population for the countries starting with the letter 'A' 
+
+#8. whats the population for the countries starting with the letter 'A' 
 
 SELECT country, population
 FROM countries_database."countries of the world"
 WHERE country LIKE 'A%'
 GROUP BY country;
 
-#8. How many countries have a population of at least 50 million
+
+#9. How many countries have a population of at least 50 million
 
 SELECT COUNT(country) AS number_of_countries
 FROM countries_database."countries of the world"
 WHERE population >= 50000000;
 
-#9. For each region show the region and number of countries 
+
+#10. For each region show the region and number of countries 
 
 SELECT region, COUNT(country) AS number_of_countries
 FROM countries_database."countries of the world"
 GROUP BY region;
 
-#10. List the regions that have a total population of at least 250 million 
+
+#11. List the regions that have a total population of at least 250 million or more
 
 SELECT region
 FROM countries_database."countries of the world"
