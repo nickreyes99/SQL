@@ -46,7 +46,7 @@ WHERE pts >= 1000 AND year BETWEEN 1952 AND 1953;
 SELECT *
 FROM nba_salary.NBA_season1718_salary
 WHERE season17_18 > (SELECT AVG(season17_18)
-FROM nba_salary.NBA_season1718_salary);
+                     FROM nba_salary.NBA_season1718_salary);
 
 
 #8. find the players who earn the highest salary on each team 
