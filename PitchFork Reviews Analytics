@@ -2,7 +2,7 @@
 
 SELECT artist, title, content, score
 FROM reviews AS rev
-INNER JOIN content AS con
+JOIN content AS con
 ON rev.reviewid = con.reviewid
 WHERE score > 8;
 
@@ -10,16 +10,16 @@ WHERE score > 8;
 
 SELECT artist, label
 FROM artists AS art
-INNER JOIN labels AS lab
+JOIN labels AS lab
 ON art.reviewid = lab.reviewid;
 
 # Find all artists whose genre is rock with there song and there rating
 
 SELECT artist, title, genre, score
 FROM artists AS art
-INNER JOIN genres AS gen
+JOIN genres AS gen
 ON art.reviewid = gen.reviewid
-INNER JOIN reviews AS rev
+JOIN reviews AS rev
 ON art.reviewid = rev.reviewid
 WHERE genre = 'rock';
 
@@ -27,11 +27,11 @@ WHERE genre = 'rock';
 
 SELECT artist, genre, label, year
 FROM artists AS art
-INNER JOIN genres AS gen
+JOIN genres AS gen
 ON art.reviewid = gen.reviewid
-INNER JOIN labels AS lab
+JOIN labels AS lab
 ON art.reviewid = lab.reviewid
-INNER JOIN years AS ye
+JOIN years AS ye
 ON art.reviewid = ye.reviewid
 WHERE artist LIKE 'N%' AND genre = 'rap';
 
@@ -39,7 +39,7 @@ WHERE artist LIKE 'N%' AND genre = 'rap';
 
 SELECT DISTINCT artist, label
 FROM artists AS art
-INNER JOIN labels AS lab
+JOIN labels AS lab
 ON art.reviewid = lab.reviewid
 WHERE artist = '50 cent';
 
