@@ -60,7 +60,15 @@ FROM reviews
 GROUP BY artist
 HAVING AVG(score) >= 8.5;
 
-#8. Show artists whose author is andy beta
+#8 Show all artist, title, publish date and genre of their songs
+
+SELECT artist, title, pub_date, genre
+FROM reviews
+JOIN genres
+ON reviews.reviewid = genres.reviewid
+WHERE genre IS NOT NULL;
+
+#9. Show artists whose author is andy beta
 
 SELECT artist
 FROM reviews
@@ -69,7 +77,7 @@ WHERE author =(SELECT author
                 WHERE author = 'andy beta');
                 
           
-#9. Show artists and their score but only artists whose score is greater than the average score of all artists 
+#10. Show artists and their score but only artists whose score is greater than the average score of all artists 
 
 SELECT artist, score
 FROM reviews
@@ -77,7 +85,7 @@ WHERE score > (SELECT AVG(score)
                 FROM reviews);
                 
                
-#10. find artists who published there songs in the year 2016 and month of september 
+#11. find artists who published there songs in the year 2016 and month of september 
 
 SELECT a.artist, title, pub_date
 FROM artists AS a
@@ -85,7 +93,18 @@ JOIN reviews AS r
 ON a.reviewid = r.reviewid
 WHERE pub_date BETWEEN '2016-09-01' AND '2016-09-31'
 GROUP BY a.artist;
-                
+
+
+#12. Rate the artist songs from amazing to terrible by their score
+
+SELECT artist, title, score,
+CASE 
+    WHEN score >= 9 THEN 'Amazing'
+    WHEN score >= 7 THEN 'Ok'
+    WHEN score >= 4.5 THEN 'Sucks'
+    ELSE 'Terrible'
+END AS rating_of_songs
+FROM reviews;
                 
 
 
