@@ -100,14 +100,11 @@ GROUP BY a.artist;
 SELECT artist, title, score,
 CASE 
     WHEN score >= 9 THEN 'Amazing'
-    WHEN score >= 7 THEN 'Ok'
-    WHEN score >= 4.5 THEN 'Sucks'
+    WHEN score >= 7 THEN 'Good'
+    WHEN score >= 4.5 THEN 'Not the best'
     ELSE 'Terrible'
 END AS rating_of_songs
 FROM reviews;
-                
-
-
 
 
 
