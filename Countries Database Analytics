@@ -22,7 +22,7 @@ WHERE population =(SELECT MAX(population) FROM "countries of the world");
 #4. Show the country with the smallest population
 
 SELECT country
-FROM "countries of the world"
+FROM countries_database."countries of the world"
 WHERE population =(SELECT MIN(population) FROM "countries of the world");
         
 
@@ -83,7 +83,21 @@ HAVING SUM(population) >= 250000000;
 #12. Show the country name, population, and avgerage population of all the countries
 
 SELECT country, population, AVG(population) OVER () AS all_avg_population
-FROM "countries of the world";
+FROM countries_database."countries of the world";
+
+
+#13. Show the country and average population but labeled from high to super low 
+
+SELECT country, AVG(population),
+CASE
+    WHEN AVG(population) >= 30000000 THEN 'High population'
+    WHEN AVG(population) >= 10000000 THEN 'Above average population'
+    WHEN AVG(population) >= 2000000 THEN 'low population'
+    ELSE 'Super low population'
+END AS 'Population density'
+FROM countries_database."countries of the world"
+GROUP BY country;
+
 
 
 
