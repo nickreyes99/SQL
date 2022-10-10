@@ -66,6 +66,32 @@ WHERE season17_18 > (SELECT AVG(season17_18)
                         WHERE n1.Tm = n2.Tm);
                         
                         
+ #10. Show the players by there name, age, and team with their age being labeled from young to old
+ 
+SELECT player, age, Tm,
+CASE
+    WHEN age > 20 THEN 'Old'
+    WHEN age BETWEEN 18 and 20 THEN 'Young'
+    ELSE 'Baby'
+END AS age_range
+FROM nba_salary.seasons_stats
+WHERE age IS NOT NULL
+ORDER BY age; 
+                
+                
+ #11. Show the players whose salary is high to super low 
+ 
+ SELECT player, Tm, season17_18,
+CASE
+    WHEN season17_18 >= 30000000 THEN 'High salary'
+    WHEN season17_18 >= 20000000 THEN 'Above average salary'
+    WHEN season17_18 >= 10000000 THEN 'Low salary'
+    ELSE 'Super Low salary'
+END AS salary_range
+FROM nba_salary.NBA_season1718_salary
+WHERE season17_18 IS NOT NULL
+ORDER BY season17_18;
+                        
                         
  
 
