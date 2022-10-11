@@ -11,22 +11,31 @@ ORDER BY population DESC;
 SELECT SUM(population)
 FROM countries_database."countries of the world";
 
+#3. Show the region and the number of countries it has but only regions that have an 's' in the name and has less than 25 countries 
 
-#3. Show the country with the biggest population
+SELECT region, COUNT(*)
+FROM countries_database."countries of the world"
+WHERE region LIKE '%s%'
+GROUP BY region
+HAVING COUNT(*) < 25
+ORDER BY COUNT(*) DESC
+
+
+#4. Show the country with the biggest population
 
 SELECT country
-FROM "countries of the world"
+FROM countries_database."countries of the world"
 WHERE population =(SELECT MAX(population) FROM "countries of the world");
 
 
-#4. Show the country with the smallest population
+#5. Show the country with the smallest population
 
 SELECT country
 FROM countries_database."countries of the world"
 WHERE population =(SELECT MIN(population) FROM "countries of the world");
         
 
-#5. what country has the highest birthrate and deathrate
+#6. what country has the highest birthrate and deathrate
 
 SELECT country, birthrate, deathrate
 FROM countries_database."countries of the world"
@@ -35,7 +44,7 @@ ORDER BY birthrate DESC, deathrate
 LIMIT 1;
 
 
-#6. List the 9 and 10 largest countries by their population
+#7. List the 9 and 10 largest countries by their population
 
 SELECT country, population
 FROM countries_database."countries of the world"
@@ -44,14 +53,14 @@ ORDER BY population DESC
 LIMIT 2 OFFSET 8;
 
 
-#7. Find the population of all regions
+#8. Find the population of all regions
 
 SELECT region, population
 FROM countries_database."countries of the world"
 GROUP BY region;
 
 
-#8. whats the population for the countries starting with the letter 'A' 
+#9. whats the population for the countries starting with the letter 'A' 
 
 SELECT country, population
 FROM countries_database."countries of the world"
@@ -59,34 +68,34 @@ WHERE country LIKE 'A%'
 GROUP BY country;
 
 
-#9. How many countries have a population of at least 50 million
+#10. How many countries have a population of at least 50 million
 
 SELECT COUNT(country) AS number_of_countries
 FROM countries_database."countries of the world"
 WHERE population >= 50000000;
 
 
-#10. For each region show the region and number of countries 
+#11. For each region show the region and number of countries 
 
 SELECT region, COUNT(country) AS number_of_countries
 FROM countries_database."countries of the world"
 GROUP BY region;
 
 
-#11. List the regions that have a total population of at least 250 million or more
+#12. List the regions that have a total population of at least 250 million or more
 
 SELECT region
 FROM countries_database."countries of the world"
 GROUP BY region
 HAVING SUM(population) >= 250000000;
 
-#12. Show the country name, population, and avgerage population of all the countries
+#13. Show the country name, population, and avgerage population of all the countries
 
 SELECT country, population, AVG(population) OVER () AS all_avg_population
 FROM countries_database."countries of the world";
 
 
-#13. Show the country and average population but labeled from high to super low 
+#14. Show the country and average population but labeled from high to super low 
 
 SELECT country, AVG(population),
 CASE
