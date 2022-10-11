@@ -26,7 +26,15 @@ SELECT player, season17_18/1000000 AS salary_millions
 FROM nba_salary.NBA_season1718_salary
 LIMIT 50;
 
-#5. Show me the top 10 highest scoring players that are 25 and older
+#5. Show all players from both tables
+
+SELECT player
+FROM nba_salary.NBA_season1718_salary
+UNION
+SELECT player
+FROM nba_salary.Seasons_Stats
+
+#6. Show me the top 10 highest scoring players that are 25 and older
 
 SELECT player, age, pts
 FROM nba_salary.seasons_stats
@@ -34,14 +42,14 @@ WHERE age >= 25
 ORDER BY pts DESC
 LIMIT 10;
 
-#6. Show me all players from 1952 to 1953 who scored 1000 or more points
+#7. Show me all players from 1952 to 1953 who scored 1000 or more points
 
 SELECT player, pts, year
 FROM nba_salary.seasons_stats
 WHERE pts >= 1000 AND year BETWEEN 1952 AND 1953;
 
 
-#7. show the players who salary is more than the average salary earned by all players
+#8. show the players who salary is more than the average salary earned by all players
 
 SELECT *
 FROM nba_salary.NBA_season1718_salary
@@ -49,7 +57,7 @@ WHERE season17_18 > (SELECT AVG(season17_18)
                      FROM nba_salary.NBA_season1718_salary);
 
 
-#8. find the players who earn the highest salary on each team 
+#9. find the players who earn the highest salary on each team 
 
 SELECT *
 FROM nba_salary.NBA_season1718_salary
@@ -57,7 +65,7 @@ WHERE (TM, season17_18) IN (SELECT Tm, MAX(season17_18)
                                 FROM nba_salary.NBA_season1718_salary
                                 GROUP BY Tm);
                                 
-#9. Find the players on each team who earn more than the avgerage salary for that team
+#10. Find the players on each team who earn more than the avgerage salary for that team
 
 SELECT *
 FROM nba_salary.NBA_season1718_salary AS n1
@@ -66,7 +74,7 @@ WHERE season17_18 > (SELECT AVG(season17_18)
                         WHERE n1.Tm = n2.Tm);
                         
                         
- #10. Show the players by there name, age, and team with their age being labeled from young to old
+ #11. Show the players by there name, age, and team with their age being labeled from young to old
  
 SELECT player, age, Tm,
 CASE
@@ -79,7 +87,7 @@ WHERE age IS NOT NULL
 ORDER BY age; 
                 
                 
- #11. Show the players whose salary is high to super low 
+ #12. Show the players whose salary is high to super low 
  
  SELECT player, Tm, season17_18,
 CASE
