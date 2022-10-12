@@ -13,7 +13,17 @@ FROM artists AS a
 JOIN labels AS l
 ON a.reviewid = l.reviewid;
 
-#3. Find all artists whose genre is rock with there song and there rating
+#3. Show each label and number of artists it has
+
+SELECT label, COUNT(*)
+FROM labels AS l
+JOIN artists AS a
+ON l.reviewid = a.reviewid
+WHERE label IS NOT NULL
+GROUP BY 1
+ORDER BY COUNT(*) DESC;
+
+#4. Find all artists whose genre is rock with there song and there rating
 
 SELECT artist, title, genre, score
 FROM artists AS a
@@ -23,7 +33,7 @@ JOIN reviews AS r
 ON a.reviewid = r.reviewid
 WHERE genre = 'rock';
 
-#4. Show all artists whose name begins with 'N' and there genre is rap also with there lable and year 
+#5. Show all artists whose name begins with 'N' and there genre is rap also with there lable and year 
 
 SELECT artist, genre, label, year
 FROM artists AS a
@@ -35,7 +45,7 @@ JOIN years AS y
 ON a.reviewid = y.reviewid
 WHERE artist LIKE 'N%' AND genre = 'rap';
 
-#5. Select all the labels 50 cent was signed too
+#6. Select all the labels 50 cent was signed too
 
 SELECT DISTINCT artist, label
 FROM artists AS a
@@ -44,7 +54,7 @@ ON a.reviewid = l.reviewid
 WHERE artist = '50 cent';
 
 
-#6. Show ALL artist name and their song but only songs that start with the letter A with their author and author type
+#7. Show ALL artist name and their song but only songs that start with the letter A with their author and author type
 
 SELECT a.artist, title, author, author_type
 FROM artists AS a
@@ -53,7 +63,7 @@ ON a.reviewid = r.reviewid
 WHERE title LIKE 'A%';
 
 
-#7.  Show artist name together with their average score but only artists whose score is 8.5 or more 
+#8.  Show artist name together with their average score but only artists whose score is 8.5 or more 
 
 SELECT artist, AVG(score)
 FROM reviews
@@ -61,7 +71,7 @@ GROUP BY artist
 HAVING AVG(score) >= 8.5;
 
 
-#8 Show all artist, title, publish date and genre of their songs
+#9. Show all artist, title, publish date and genre of their songs
 
 SELECT artist, title, pub_date, genre
 FROM reviews
@@ -70,7 +80,7 @@ ON reviews.reviewid = genres.reviewid
 WHERE genre IS NOT NULL;
 
 
-#9. Show artists whose author is andy beta
+#10. Show artists whose author is andy beta
 
 SELECT artist
 FROM reviews
@@ -79,7 +89,7 @@ WHERE author =(SELECT author
                 WHERE author = 'andy beta');
                 
           
-#10. Show artists and their score but only artists whose score is greater than the average score of all artists 
+#11. Show artists and their score but only artists whose score is greater than the average score of all artists 
 
 SELECT artist, score
 FROM reviews
@@ -87,13 +97,13 @@ WHERE score > (SELECT AVG(score)
                 FROM reviews);
                 
             
- #11. Show the arist and their score with the average score of all artists
+ #12. Show the arist and their score with the average score of all artists
  
  SELECT artist, score, (SELECT AVG(score) FROM reviews) AS avg_score
 FROM reviews;
 
                
-#12. find artists who published there songs in the year 2016 and month of september 
+#13. find artists who published there songs in the year 2016 and month of september 
 
 SELECT a.artist, title, pub_date
 FROM artists AS a
@@ -103,7 +113,7 @@ WHERE pub_date BETWEEN '2016-09-01' AND '2016-09-31'
 GROUP BY a.artist;
 
 
-#13. Rate the artist songs from amazing to terrible by their score
+#14. Rate the artist songs from amazing to terrible by their score
 
 SELECT artist, title, score,
 CASE 
