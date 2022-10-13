@@ -1,4 +1,4 @@
-#1. Show all the countries that start with the letter 'U' and have a population bigger than 50 million 
+#1. I Showed all the countries that start with the letter 'U' and have a population bigger than 50 million 
 
 SELECT country, population
 FROM countries_database."countries of the world"
@@ -6,12 +6,12 @@ WHERE country LIKE 'U%' AND population >= 50000000
 ORDER BY population DESC;
 
 
-#2. What the total population of the world 
+#2. I determined What the total population of the world 
 
 SELECT SUM(population)
 FROM countries_database."countries of the world";
 
-#3. Show the region and the number of countries it has but only regions that have an 's' in the name and has less than 25 countries 
+#3. I Showed the region and the number of countries it has but only regions that have an 's' in the name and has less than 25 countries 
 
 SELECT region, COUNT(*)
 FROM countries_database."countries of the world"
@@ -21,21 +21,21 @@ HAVING COUNT(*) < 25
 ORDER BY COUNT(*) DESC
 
 
-#4. Show the country with the biggest population
+#4. I Showed the country with the biggest population
 
 SELECT country
 FROM countries_database."countries of the world"
 WHERE population =(SELECT MAX(population) FROM "countries of the world");
 
 
-#5. Show the country with the smallest population
+#5. I Showed the country with the smallest population
 
 SELECT country
 FROM countries_database."countries of the world"
 WHERE population =(SELECT MIN(population) FROM "countries of the world");
         
 
-#6. what country has the highest birthrate and deathrate
+#6. I determined what country has the highest birthrate and deathrate
 
 SELECT country, birthrate, deathrate
 FROM countries_database."countries of the world"
@@ -44,7 +44,7 @@ ORDER BY birthrate DESC, deathrate
 LIMIT 1;
 
 
-#7. List the 9 and 10 largest countries by their population
+#7. I Listed the 9 and 10 largest countries by their population
 
 SELECT country, population
 FROM countries_database."countries of the world"
@@ -53,14 +53,14 @@ ORDER BY population DESC
 LIMIT 2 OFFSET 8;
 
 
-#8. Find the population of all regions
+#8. I Found the population of all regions
 
 SELECT region, population
 FROM countries_database."countries of the world"
 GROUP BY region;
 
 
-#9. whats the population for the countries starting with the letter 'A' 
+#9. I determined whats the population for the countries starting with the letter 'A' 
 
 SELECT country, population
 FROM countries_database."countries of the world"
@@ -68,7 +68,7 @@ WHERE country LIKE 'A%'
 GROUP BY country;
 
 
-#10. How many countries have a population of at least 50 million
+#10. I determined How many countries have a population of at least 50 million
 
 SELECT COUNT(country) AS number_of_countries
 FROM countries_database."countries of the world"
@@ -82,20 +82,20 @@ FROM countries_database."countries of the world"
 GROUP BY region;
 
 
-#12. List the regions that have a total population of at least 250 million or more
+#12. I List the regions that have a total population of at least 250 million or more
 
 SELECT region
 FROM countries_database."countries of the world"
 GROUP BY region
 HAVING SUM(population) >= 250000000;
 
-#13. Show the country name, population, and avgerage population of all the countries
+#13. I Showed the country name, population, and avgerage population of all the countries
 
 SELECT country, population, AVG(population) OVER () AS all_avg_population
 FROM countries_database."countries of the world";
 
 
-#14. Show the country and average population but labeled from high to super low 
+#14. I Showed the country and average population but labeled from high to super low 
 
 SELECT country, AVG(population),
 CASE
