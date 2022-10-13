@@ -1,18 +1,18 @@
-#1. select all coulmns from season stats for point guards and guards from the years 1950 to 1955 
+#1. I select all coulmns from season stats for point guards and guards from the years 1950 to 1955 
 
 SELECT *
 FROM nba_salary.Seasons_Stats
 WHERE pos IN( 'PG', 'G')
 AND year BETWEEN 1950 AND 1955;
 
-#2. Show players names together with their avgerage points and number of assists but only players whose average number of points is 500 or more
+#2. I Showed players names together with their avgerage points and number of assists but only players whose average number of points is 500 or more
 
 SELECT player, COUNT(*) AS number_of_assists, AVG(pts) AS avg_points
 FROM nba_salary.Seasons_Stats
 GROUP BY player
 HAVING AVG(pts) >= 500;
 
-#3. Show players who scored more than the average points scored by all players
+#3.I Showed players who scored more than the average points scored by all players
 
 SELECT *
 FROM nba_salary.Seasons_Stats 
@@ -20,13 +20,13 @@ WHERE pts > (SELECT AVG(pts)
             FROM nba_salary.Seasons_Stats);
 
 
-#4. List the top 50 highest paid nba players and their salaries in millions of dollars 
+#4. I List the top 50 highest paid nba players and their salaries in millions of dollars 
 
 SELECT player, season17_18/1000000 AS salary_millions
 FROM nba_salary.NBA_season1718_salary
 LIMIT 50;
 
-#5. Show all players from both tables
+#5. I Showed all players from both tables
 
 SELECT player
 FROM nba_salary.NBA_season1718_salary
@@ -34,7 +34,7 @@ UNION
 SELECT player
 FROM nba_salary.Seasons_Stats
 
-#6. Show me the top 10 highest scoring players that are 25 and older
+#6. I Showed me the top 10 highest scoring players that are 25 and older
 
 SELECT player, age, pts
 FROM nba_salary.seasons_stats
@@ -42,14 +42,14 @@ WHERE age >= 25
 ORDER BY pts DESC
 LIMIT 10;
 
-#7. Show me all players from 1952 to 1953 who scored 1000 or more points
+#7. I Showed me all players from 1952 to 1953 who scored 1000 or more points
 
 SELECT player, pts, year
 FROM nba_salary.seasons_stats
 WHERE pts >= 1000 AND year BETWEEN 1952 AND 1953;
 
 
-#8. show the players who salary is more than the average salary earned by all players
+#8. I showed the players who salary is more than the average salary earned by all players
 
 SELECT *
 FROM nba_salary.NBA_season1718_salary
@@ -57,7 +57,7 @@ WHERE season17_18 > (SELECT AVG(season17_18)
                      FROM nba_salary.NBA_season1718_salary);
 
 
-#9. find the players who earn the highest salary on each team 
+#9. I found the players who earn the highest salary on each team 
 
 SELECT *
 FROM nba_salary.NBA_season1718_salary
@@ -65,7 +65,7 @@ WHERE (TM, season17_18) IN (SELECT Tm, MAX(season17_18)
                                 FROM nba_salary.NBA_season1718_salary
                                 GROUP BY Tm);
                                 
-#10. Find the players on each team who earn more than the avgerage salary for that team
+#10. I Found the players on each team who earn more than the avgerage salary for that team
 
 SELECT *
 FROM nba_salary.NBA_season1718_salary AS n1
@@ -74,7 +74,7 @@ WHERE season17_18 > (SELECT AVG(season17_18)
                         WHERE n1.Tm = n2.Tm);
                         
                         
- #11. Show the players by there name, age, and team with their age being labeled from young to old
+ #11. I Showed the players by there name, age, and team with their age being labeled from young to old
  
 SELECT player, age, Tm,
 CASE
@@ -87,7 +87,7 @@ WHERE age IS NOT NULL
 ORDER BY age; 
                 
                 
- #12. Show the players whose salary is high to super low 
+ #12. I Showed the players whose salary is high to super low 
  
  SELECT player, Tm, season17_18,
 CASE
