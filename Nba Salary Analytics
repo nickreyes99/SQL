@@ -99,6 +99,17 @@ END AS salary_range
 FROM nba_salary.NBA_season1718_salary
 WHERE season17_18 IS NOT NULL
 ORDER BY season17_18;
+
+
+#13. I showed the players year, age, team , and points but only those whose points are greater than 1000 Using a CTE
+
+WITH CTE_seasons_stats AS  
+(SELECT player, year, pos, age, TM, pts
+FROM seasons_stats
+WHERE pts > 1000
+)
+SELECT *
+FROM CTE_seasons_stats;
                         
                         
  
