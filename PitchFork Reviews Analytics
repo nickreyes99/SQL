@@ -124,7 +124,17 @@ CASE
 END AS rating_of_songs
 FROM reviews;
 
+#15. I showed the artist with thier title, score, author and genre of their song with a score higher than 9 (USING A CTE)
 
+WITH CTE_reviews AS 
+(SELECT artist, title, score, author, genre
+FROM reviews rev
+JOIN genres gen
+    ON rev.reviewid = gen.reviewid
+WHERE score > 9
+)
+SELECT *
+FROM CTE_reviews;
 
 
 
