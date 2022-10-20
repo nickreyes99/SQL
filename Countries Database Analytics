@@ -6,10 +6,16 @@ WHERE country LIKE 'U%' AND population >= 50000000
 ORDER BY population DESC;
 
 
+
+
+
 #2. I determined What the total population of the world 
 
 SELECT SUM(population)
 FROM countries_database."countries of the world";
+
+
+
 
 #3. I Showed the region and the number of countries it has but only regions that have an 's' in the name and has less than 25 countries 
 
@@ -21,6 +27,9 @@ HAVING COUNT(*) < 25
 ORDER BY COUNT(*) DESC
 
 
+
+
+
 #4. I Showed the country with the biggest population
 
 SELECT country
@@ -28,11 +37,17 @@ FROM countries_database."countries of the world"
 WHERE population =(SELECT MAX(population) FROM "countries of the world");
 
 
+
+
+
 #5. I Showed the country with the smallest population
 
 SELECT country
 FROM countries_database."countries of the world"
 WHERE population =(SELECT MIN(population) FROM "countries of the world");
+
+
+
         
 
 #6. I determined what country has the highest birthrate and deathrate
@@ -44,6 +59,9 @@ ORDER BY birthrate DESC, deathrate
 LIMIT 1;
 
 
+
+
+
 #7. I Listed the 9 and 10 largest countries by their population
 
 SELECT country, population
@@ -53,11 +71,17 @@ ORDER BY population DESC
 LIMIT 2 OFFSET 8;
 
 
+
+
+
 #8. I Found the population of all regions
 
 SELECT region, population
 FROM countries_database."countries of the world"
 GROUP BY region;
+
+
+
 
 
 #9. I determined whats the population for the countries starting with the letter 'A' 
@@ -68,11 +92,17 @@ WHERE country LIKE 'A%'
 GROUP BY country;
 
 
+
+
+
 #10. I determined How many countries have a population of at least 50 million
 
 SELECT COUNT(country) AS number_of_countries
 FROM countries_database."countries of the world"
 WHERE population >= 50000000;
+
+
+
 
 
 #11. For each region show the region and number of countries 
@@ -82,6 +112,9 @@ FROM countries_database."countries of the world"
 GROUP BY region;
 
 
+
+
+
 #12. I List the regions that have a total population of at least 250 million or more
 
 SELECT region
@@ -89,10 +122,16 @@ FROM countries_database."countries of the world"
 GROUP BY region
 HAVING SUM(population) >= 250000000;
 
+
+
+
 #13. I Showed the country name, population, and avgerage population of all the countries
 
 SELECT country, population, AVG(population) OVER () AS all_avg_population
 FROM countries_database."countries of the world";
+
+
+
 
 
 #14. I Showed the country and average population but labeled from high to super low 
