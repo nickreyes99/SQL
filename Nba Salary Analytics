@@ -48,8 +48,18 @@ SELECT player, pts, year
 FROM nba_salary.seasons_stats
 WHERE pts >= 1000 AND year BETWEEN 1952 AND 1953;
 
+#8. I found all the players who have played on the teams TOT,DNN and NYK and ordered the output by player in ascending order
 
-#8. I showed the players who salary is more than the average salary earned by all players
+SELECT player,
+COUNT(Tm) AS team_count
+FROM seasons_stats
+WHERE Tm IN ('TOT','DNN','NYK')
+GROUP BY player
+HAVING COUNT(Tm) = 3
+ORDER BY player;
+
+
+#9. I showed the players who salary is more than the average salary earned by all players
 
 SELECT *
 FROM nba_salary.NBA_season1718_salary
@@ -57,7 +67,7 @@ WHERE season17_18 > (SELECT AVG(season17_18)
                      FROM nba_salary.NBA_season1718_salary);
 
 
-#9. I found the players who earn the highest salary on each team 
+#10. I found the players who earn the highest salary on each team 
 
 SELECT *
 FROM nba_salary.NBA_season1718_salary
@@ -65,7 +75,7 @@ WHERE (TM, season17_18) IN (SELECT Tm, MAX(season17_18)
                                 FROM nba_salary.NBA_season1718_salary
                                 GROUP BY Tm);
                                 
-#10. I Found the players on each team who earn more than the avgerage salary for that team
+#11. I Found the players on each team who earn more than the avgerage salary for that team
 
 SELECT *
 FROM nba_salary.NBA_season1718_salary AS n1
@@ -74,7 +84,7 @@ WHERE season17_18 > (SELECT AVG(season17_18)
                         WHERE n1.Tm = n2.Tm);
                         
                         
- #11. I Showed the players by there name, age, and team with their age being labeled from young to old
+ #12. I Showed the players by there name, age, and team with their age being labeled from young to old
  
 SELECT player, age, Tm,
 CASE
@@ -87,7 +97,7 @@ WHERE age IS NOT NULL
 ORDER BY age; 
                 
                 
- #12. I Showed the players whose salary is high to super low 
+ #13. I Showed the players whose salary is high to super low 
  
  SELECT player, Tm, season17_18,
 CASE
@@ -101,7 +111,7 @@ WHERE season17_18 IS NOT NULL
 ORDER BY season17_18;
 
 
-#13. I showed the players year, age, team , and points but only those whose points are greater than 1000 (USING A CTE)
+#14. I showed the players year, age, team , and points but only those whose points are greater than 1000 (USING A CTE)
 
 WITH CTE_seasons_stats AS  
 (SELECT player, year, pos, age, TM, pts
