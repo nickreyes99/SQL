@@ -5,6 +5,9 @@ FROM nba_salary.Seasons_Stats
 WHERE pos IN( 'PG', 'G')
 AND year BETWEEN 1950 AND 1955;
 
+
+
+
 #2. I Showed players names together with their avgerage points and number of assists but only players whose average number of points is 500 or more
 
 SELECT player, COUNT(*) AS number_of_assists, AVG(pts) AS avg_points
@@ -12,12 +15,18 @@ FROM nba_salary.Seasons_Stats
 GROUP BY player
 HAVING AVG(pts) >= 500;
 
+
+
+
 #3.I Showed players who scored more than the average points scored by all players
 
 SELECT *
 FROM nba_salary.Seasons_Stats 
 WHERE pts > (SELECT AVG(pts)
             FROM nba_salary.Seasons_Stats);
+            
+            
+            
 
 
 #4. I List the top 50 highest paid nba players and their salaries in millions of dollars 
@@ -26,13 +35,19 @@ SELECT player, season17_18/1000000 AS salary_millions
 FROM nba_salary.NBA_season1718_salary
 LIMIT 50;
 
+
+
+
 #5. I Showed all players from both tables
 
 SELECT player
 FROM nba_salary.NBA_season1718_salary
 UNION
 SELECT player
-FROM nba_salary.Seasons_Stats
+FROM nba_salary.Seasons_Stats;
+
+
+
 
 #6. I Showed me the top 10 highest scoring players that are 25 and older
 
@@ -42,11 +57,17 @@ WHERE age >= 25
 ORDER BY pts DESC
 LIMIT 10;
 
+
+
+
 #7. I Showed me all players from 1952 to 1953 who scored 1000 or more points
 
 SELECT player, pts, year
 FROM nba_salary.seasons_stats
 WHERE pts >= 1000 AND year BETWEEN 1952 AND 1953;
+
+
+
 
 #8. I found all the players who have played on the teams TOT,DNN and NYK and ordered the output by player in ascending order
 
@@ -59,12 +80,18 @@ HAVING COUNT(Tm) = 3
 ORDER BY player;
 
 
+
+
+
 #9. I showed the players who salary is more than the average salary earned by all players
 
 SELECT *
 FROM nba_salary.NBA_season1718_salary
 WHERE season17_18 > (SELECT AVG(season17_18)
                      FROM nba_salary.NBA_season1718_salary);
+                     
+                     
+                     
 
 
 #10. I found the players who earn the highest salary on each team 
@@ -75,6 +102,9 @@ WHERE (TM, season17_18) IN (SELECT Tm, MAX(season17_18)
                                 FROM nba_salary.NBA_season1718_salary
                                 GROUP BY Tm);
                                 
+                                
+                                
+                                
 #11. I Found the players on each team who earn more than the avgerage salary for that team
 
 SELECT *
@@ -82,6 +112,9 @@ FROM nba_salary.NBA_season1718_salary AS n1
 WHERE season17_18 > (SELECT AVG(season17_18)
                         FROM nba_salary.NBA_season1718_salary AS n2
                         WHERE n1.Tm = n2.Tm);
+                        
+                        
+                        
                         
                         
  #12. I Showed the players by there name, age, and team with their age being labeled from young to old
@@ -95,6 +128,9 @@ END AS age_range
 FROM nba_salary.seasons_stats
 WHERE age IS NOT NULL
 ORDER BY age; 
+
+
+
                 
                 
  #13. I Showed the players whose salary is high to super low 
@@ -109,6 +145,9 @@ END AS salary_range
 FROM nba_salary.NBA_season1718_salary
 WHERE season17_18 IS NOT NULL
 ORDER BY season17_18;
+
+
+
 
 
 #14. I showed the players year, age, team , and points but only those whose points are greater than 1000 (USING A CTE)
