@@ -94,8 +94,22 @@ HAVING AVG(score) >= 8.5;
 
 
 
+#9 I identified the 3 labels that have the most artits 
 
-#9. I Showed all artist, title, publish date and genre of their songs
+SELECT label,
+       COUNT(artist) AS number_of_artist
+FROM labels AS l
+JOIN artists AS a
+    ON l.reviewid = a.reviewid
+GROUP BY label
+ORDER BY number_of_artist DESC
+LIMIT 3;
+
+
+
+
+
+#10. I Showed all artist, title, publish date and genre of their songs
 
 SELECT artist, title, pub_date, genre
 FROM reviews
@@ -107,7 +121,7 @@ WHERE genre IS NOT NULL;
 
 
 
-#10. I Showed artists whose author is andy beta
+#11. I Showed artists whose author is andy beta
 
 SELECT artist
 FROM reviews
@@ -119,7 +133,7 @@ WHERE author =(SELECT author
                 
                 
           
-#11. I Showed artists and their score but only artists whose score is greater than the average score of all artists 
+#12. I Showed artists and their score but only artists whose score is greater than the average score of all artists 
 
 SELECT artist, score
 FROM reviews
@@ -130,7 +144,7 @@ WHERE score > (SELECT AVG(score)
                 
                 
             
- #12. I Showed the arist and their score with the average score of all artists
+ #13. I Showed the arist and their score with the average score of all artists
  
  SELECT artist, score, (SELECT AVG(score) FROM reviews) AS avg_score
 FROM reviews;
@@ -139,7 +153,7 @@ FROM reviews;
 
 
                
-#13. I found artists who published there songs in the year 2016 and month of september 
+#14. I found artists who published there songs in the year 2016 and month of september 
 
 SELECT a.artist, title, pub_date
 FROM artists AS a
@@ -152,7 +166,7 @@ GROUP BY a.artist;
 
 
 
-#14. I Rated the artists songs from amazing to terrible by their score
+#15. I Rated the artists songs from amazing to terrible by their score
 
 SELECT artist, title, score,
 CASE 
@@ -166,7 +180,7 @@ FROM reviews;
 
 
 
-#15. I showed the artist with thier title, score, author and genre of their song with a score higher than 9 (USING A CTE)
+#16. I showed the artist with thier title, score, author and genre of their song with a score higher than 9 (USING A CTE)
 
 WITH CTE_reviews AS 
 (SELECT artist, title, score, author, genre
