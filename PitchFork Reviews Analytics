@@ -108,7 +108,6 @@ LIMIT 3;
 
 
 
-
 #10. I Showed all artist, title, publish date and genre of their songs
 
 SELECT artist, title, pub_date, genre
@@ -116,6 +115,19 @@ FROM reviews
 JOIN genres
 ON reviews.reviewid = genres.reviewid
 WHERE genre IS NOT NULL;
+
+
+
+
+
+#11.  I determined what artists has not been signed to a label
+
+SELECT *
+FROM artists AS a
+RIGHT JOIN labels AS l
+    ON a.reviewid = l.reviewid
+WHERE label IS NULL;
+
 
 
 
