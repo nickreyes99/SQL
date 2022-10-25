@@ -118,9 +118,16 @@ WHERE genre IS NOT NULL;
 
 
 
+#11. I joined the reviews table and years table using NATURAL JOIN
+
+SELECT *
+FROM reviews
+NATURAL JOIN years
 
 
-#11.  I determined what artists has not been signed to a label
+
+
+#12.  I determined what artists has not been signed to a label
 
 SELECT *
 FROM artists AS a
@@ -133,7 +140,7 @@ WHERE label IS NULL;
 
 
 
-#11. I Showed artists whose author is andy beta
+#13. I Showed artists whose author is andy beta
 
 SELECT artist
 FROM reviews
@@ -145,7 +152,7 @@ WHERE author =(SELECT author
                 
                 
           
-#12. I Showed artists and their score but only artists whose score is greater than the average score of all artists 
+#14. I Showed artists and their score but only artists whose score is greater than the average score of all artists 
 
 SELECT artist, score
 FROM reviews
@@ -156,7 +163,7 @@ WHERE score > (SELECT AVG(score)
                 
                 
             
- #13. I Showed the arist and their score with the average score of all artists
+ #15. I Showed the arist and their score with the average score of all artists
  
  SELECT artist, score, (SELECT AVG(score) FROM reviews) AS avg_score
 FROM reviews;
@@ -165,7 +172,7 @@ FROM reviews;
 
 
                
-#14. I found artists who published there songs in the year 2016 and month of september 
+#16. I found artists who published there songs in the year 2016 and month of september 
 
 SELECT a.artist, title, pub_date
 FROM artists AS a
@@ -178,7 +185,7 @@ GROUP BY a.artist;
 
 
 
-#15. I Rated the artists songs from amazing to terrible by their score
+#17. I Rated the artists songs from amazing to terrible by their score
 
 SELECT artist, title, score,
 CASE 
@@ -192,7 +199,7 @@ FROM reviews;
 
 
 
-#16. I showed the artist with thier title, score, author and genre of their song with a score higher than 9 (USING A CTE)
+#18. I showed the artist with thier title, score, author and genre of their song with a score higher than 9 (USING A CTE)
 
 WITH CTE_reviews AS 
 (SELECT artist, title, score, author, genre
