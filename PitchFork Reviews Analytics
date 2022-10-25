@@ -221,10 +221,12 @@ WITH CTE_reviews AS
 FROM reviews rev
 JOIN genres gen
     ON rev.reviewid = gen.reviewid
-WHERE score > 9
+WHERE score >= 9
+ORDER BY score DESC
 )
 SELECT *
 FROM CTE_reviews;
+
 
 
 
