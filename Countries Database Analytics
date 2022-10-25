@@ -8,11 +8,11 @@ ORDER BY population DESC;
 
 
 
-
 #2. I determined What the total population of the world 
 
 SELECT SUM(population)
 FROM countries_database."countries of the world";
+
 
 
 
