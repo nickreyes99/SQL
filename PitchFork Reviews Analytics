@@ -27,7 +27,17 @@ WHERE score % 2 = 0;
 
 
 
-#4. I Showed each label and number of artists it has
+
+#4. I determined what artists names start with vowels, showing no duplicates
+
+SELECT DISTINCT artist
+FROM artists
+WHERE artist REGEXP '^[aeiou]';
+
+
+
+
+#5. I Showed each label and number of artists it has
 
 SELECT label, COUNT(*)
 FROM labels AS l
@@ -40,7 +50,7 @@ ORDER BY COUNT(*) DESC;
 
 
 
-#5. I Found all artists whose genre is rock with there song and there rating
+#6. I Found all artists whose genre is rock with there song and there rating
 
 SELECT artist, title, genre, score
 FROM artists AS a
@@ -53,7 +63,7 @@ WHERE genre = 'rock';
 
 
 
-#6. I Showed all artists whose name begins with 'N' and there genre is rap also with there lable and year 
+#7. I Showed all artists whose name begins with 'N' and there genre is rap also with there lable and year 
 
 SELECT artist, genre, label, year
 FROM artists AS a
@@ -68,7 +78,7 @@ WHERE artist LIKE 'N%' AND genre = 'rap';
 
 
 
-#7. I Selected all the labels 50 cent was signed too
+#8. I Selected all the labels 50 cent was signed too
 
 SELECT DISTINCT artist, label
 FROM artists AS a
@@ -80,7 +90,7 @@ WHERE artist = '50 cent';
 
 
 
-#8. I Showded ALL artist name and their song but only songs that start with the letter A with their author and author type
+#9. I Showded ALL artist name and their song but only songs that start with the letter A with their author and author type
 
 SELECT a.artist, title, author, author_type
 FROM artists AS a
@@ -92,7 +102,7 @@ WHERE title LIKE 'A%';
 
 
 
-#9.  I Showed artist name together with their average score but only artists whose score is 8.5 or more 
+#10.  I Showed artist name together with their average score but only artists whose score is 8.5 or more 
 
 SELECT artist, AVG(score)
 FROM reviews
@@ -102,7 +112,7 @@ HAVING AVG(score) >= 8.5;
 
 
 
-#10. I identified the 3 labels that have the most artits 
+#11. I identified the 3 labels that have the most artits 
 
 SELECT label,
        COUNT(artist) AS number_of_artist
@@ -117,7 +127,7 @@ LIMIT 3;
 
 
 
-#11. I found all the artiss who worked with the author Sheldon Pearce
+#12. I found all the artiss who worked with the author Sheldon Pearce
 
 SELECT *
 FROM reviews AS r1
@@ -130,7 +140,7 @@ WHERE R1.author = 'sheldon pearce';
 
 
 
-#12. I Showed all artist, title, publish date and genre of their songs
+#13. I Showed all artist, title, publish date and genre of their songs
 
 SELECT artist, title, pub_date, genre
 FROM reviews
@@ -142,7 +152,7 @@ WHERE genre IS NOT NULL;
 
 
 
-#13. I joined the reviews table and years table using NATURAL JOIN
+#14. I joined the reviews table and years table using NATURAL JOIN
 
 SELECT *
 FROM reviews
@@ -151,7 +161,7 @@ NATURAL JOIN years
 
 
 
-#14.  I determined what artists has not been signed to a label
+#15.  I determined what artists has not been signed to a label
 
 SELECT *
 FROM artists AS a
@@ -163,7 +173,7 @@ WHERE label IS NULL;
 
 
 
-#15. I Showed artists whose author is andy beta
+#16. I Showed artists whose author is andy beta
 
 SELECT artist
 FROM reviews
@@ -175,7 +185,7 @@ WHERE author =(SELECT author
                 
                 
           
-#16. I Showed artists and their score but only artists whose score is greater than the average score of all artists 
+#17. I Showed artists and their score but only artists whose score is greater than the average score of all artists 
 
 SELECT artist, score
 FROM reviews
@@ -186,7 +196,7 @@ WHERE score > (SELECT AVG(score)
                 
                 
             
- #17. I Showed the arist and their score with the average score of all artists
+ #18. I Showed the arist and their score with the average score of all artists
  
  SELECT artist, score, (SELECT AVG(score) FROM reviews) AS avg_score
 FROM reviews;
@@ -195,7 +205,7 @@ FROM reviews;
 
 
                
-#18. I found artists who published there songs in the year 2016 and month of september 
+#19. I found artists who published there songs in the year 2016 and month of september 
 
 SELECT a.artist, title, pub_date
 FROM artists AS a
@@ -208,7 +218,7 @@ GROUP BY a.artist;
 
 
 
-#19. I Rated the artists songs from amazing to terrible by their score
+#20. I Rated the artists songs from amazing to terrible by their score
 
 SELECT artist, title, score,
 CASE 
@@ -222,7 +232,7 @@ FROM reviews;
 
 
 
-#20. I showed the artist with thier title, score, author and genre of their song with a score higher than 9 (USING A CTE)
+#21. I showed the artist with thier title, score, author and genre of their song with a score higher than 9 (USING A CTE)
 
 WITH CTE_reviews AS 
 (SELECT artist, title, score, author, genre
