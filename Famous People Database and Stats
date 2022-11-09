@@ -1,49 +1,48 @@
 
---create a famous people database
 CREATE TABLE stars (id INTEGER PRIMARY KEY,
    first_name TEXT,
    last_name TEXT,
     birthdate TEXT,
-    instagram TEXT);
+    instagram TEXT,
+    gender TEXT);
     
     
-INSERT INTO stars (first_name, last_name, birthdate, instagram) VALUES ("Annie", "Cabello", "06-19-2002", "@anniecabello_");
-INSERT INTO stars (first_name, last_name, birthdate, instagram) VALUES ("Dwayne", "Johnson", "05-02-1972", "@therock");
-INSERT INTO stars (first_name, last_name, birthdate, instagram) VALUES ("Chris", "Evans", "06-13-1981", "@chrisevans");
-INSERT INTO stars (first_name, last_name, birthdate, instagram) VALUES ("Will", "Smith", "09-25-1968", "@willsmith");
-INSERT INTO stars (first_name, last_name, birthdate, instagram) VALUES ("Henry", "Cavill", "05-05-1983", "@henrycavill");
-INSERT INTO stars (first_name, last_name, birthdate, instagram) VALUES ("Ryan", "Reynolds", "10-23-1976", "@vancityreynolds");
-INSERT INTO stars (first_name, last_name, birthdate, instagram) VALUES ("Scarlett", "Johansson", "11-22-1984", "@scarlettjohanssonworld");
-INSERT INTO stars (first_name, last_name, birthdate, instagram) VALUES ("Gal", "Gadot", "04-30-1985", "@gal_gadot");
-INSERT INTO stars (first_name, last_name, birthdate, instagram) VALUES ("Jackie", "Chan", "04-07-1954", "@jackiechan");
+INSERT INTO stars (first_name, last_name, birthdate, instagram, gender)VALUES ("Annie", "Cabello", "06-19-2002", "@anniecabello_", "F");
+INSERT INTO stars (first_name, last_name, birthdate, instagram, gender) VALUES ("Dwayne", "Johnson", "05-02-1972", "@therock", "M");
+INSERT INTO stars (first_name, last_name, birthdate, instagram, gender) VALUES ("Chris", "Evans", "06-13-1981", "@chrisevans", "M");
+INSERT INTO stars (first_name, last_name, birthdate, instagram, gender) VALUES ("Will", "Smith", "09-25-1968", "@willsmith", "M");
+INSERT INTO stars (first_name, last_name, birthdate, instagram, gender) VALUES ("Henry", "Cavill", "05-05-1983", "@henrycavill", "M");
+INSERT INTO stars (first_name, last_name, birthdate, instagram, gender) VALUES ("Ryan", "Reynolds", "10-23-1976", "@vancityreynolds", "M");
+INSERT INTO stars (first_name, last_name, birthdate, instagram, gender)VALUES ("Scarlett", "Johansson", "11-22-1984", "@scarlettjohanssonworld", "F");
+INSERT INTO stars (first_name, last_name, birthdate, instagram, gender) VALUES ("Gal", "Gadot", "04-30-1985", "@gal_gadot", "F");
+INSERT INTO stars (first_name, last_name, birthdate, instagram, gender) VALUES ("Jackie", "Chan", "04-07-1954", "@jackiechan", "M");
 
-
---create a database of leading roles each famous person was in
 CREATE TABLE leading_role (id INTEGER PRIMARY KEY AUTOINCREMENT ,     stars_id INTEGER,
     movie TEXT,
-    rate INTEGER);
+    rate INTEGER,
+    genre TEXT);
     
-INSERT INTO leading_role (stars_id, movie, rate)
- VALUES( 1,'Anonymously Yours', 5.7);
- INSERT INTO leading_role (stars_id, movie, rate)
- VALUES(2, 'Skyscraper', 5.8);
- INSERT INTO leading_role (stars_id, movie, rate)
- VALUES(3, 'Captain America: The First Avenger', 6.9);
- INSERT INTO leading_role (stars_id, movie, rate)
- VALUES(4, 'Gemini Man', 7.4);
- INSERT INTO leading_role (stars_id, movie, rate)
- VALUES( 5, 'Man Of Steel', 5.7);
- INSERT INTO leading_role (stars_id, movie, rate)
- VALUES(6, 'Dead Pool', 5.7);
- INSERT INTO leading_role (stars_id, movie, rate)
- VALUES(7, 'Black Widow', 6.7);
- INSERT INTO leading_role (stars_id, movie, rate)
- VALUES(8, 'Wonder Woman', 7.4);
- INSERT INTO leading_role (stars_id, movie, rate)
- VALUES(9, 'The Spy Next Door', 5.4);
+INSERT INTO leading_role (stars_id, movie, rate, genre)
+ VALUES( 1,'Anonymously Yours', 5.7, "romatic");
+ INSERT INTO leading_role (stars_id, movie, rate, genre)
+ VALUES(2, 'Skyscraper', 5.8, "action");
+ INSERT INTO leading_role (stars_id, movie, rate, genre)
+ VALUES(3, 'Captain America: The First Avenger', 6.9, "action");
+ INSERT INTO leading_role (stars_id, movie, rate, genre)
+ VALUES(4, 'Gemini Man', 7.4, "action");
+ INSERT INTO leading_role (stars_id, movie, rate, genre)
+ VALUES( 5, 'Man Of Steel', 5.7, "action");
+ INSERT INTO leading_role (stars_id, movie, rate, genre)
+ VALUES(6, 'Dead Pool', 5.7, "action");
+ INSERT INTO leading_role (stars_id, movie, rate, genre)
+ VALUES(7, 'Black Widow', 6.7, "action");
+ INSERT INTO leading_role (stars_id, movie, rate, genre)
+ VALUES(8, 'Wonder Woman', 7.4, "action");
+ INSERT INTO leading_role (stars_id, movie, rate, genre)
+ VALUES(9, 'The Spy Next Door', 5.4, "action");
  
  
- --create a database of hobbies each famous person likes to do
+ 
  CREATE table hobbies (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     person_id INTEGER,
@@ -51,33 +50,85 @@ INSERT INTO leading_role (stars_id, movie, rate)
     
 INSERT INTO hobbies (person_id, name) VALUES (1, 'singing');
 INSERT INTO hobbies (person_id, name) VALUES (2, 'workingout');
-INSERT INTO hobbies (person_id, name) VALUES (3, 'tap dancing');
-INSERT INTO hobbies (person_id, name) VALUES (4, 'youtube');
-INSERT INTO hobbies (person_id, name) VALUES (5, 'playing video games');
-INSERT INTO hobbies (person_id, name) VALUES (6, 'his carrer');
+INSERT INTO hobbies (person_id, name) VALUES ( 3,'tap dancing');
+INSERT INTO hobbies (person_id, name) VALUES ( 4,'youtube');
+INSERT INTO hobbies (person_id, name) VALUES ( 5, 'playing video games');
+INSERT INTO hobbies (person_id, name) VALUES ( 6,'his carrer');
 INSERT INTO hobbies (person_id, name) VALUES (7, 'bee keeping');
-INSERT INTO hobbies (person_id, name) VALUES (8,' riding motorcycles');
+INSERT INTO hobbies (person_id, name) VALUES (8, ' riding motorcycles');
 INSERT INTO hobbies (person_id, name) VALUES (9, 'listening to music');
  
 
---display all from stars database.
-SELECT * FROM stars;
 
 
---who are the actors name whos movie rating is greater than 6 and what are there movies?
+
 SELECT s.first_name, s.last_name, movie, rate AS movie_rating FROM stars AS s
 JOIN leading_role 
-ON s.id = leading_role.stars_id
+    ON s.id = leading_role.stars_id
 WHERE movie_rating > 6;
 
-
- --what are the actors name, instagram, and movies they are in as the leading role also what is the movie rating of that movie?
-SELECT s.first_name, s.last_name, s.instagram, leading_role.movie, leading_role.rate AS movie_rating FROM stars AS s
-    JOIN leading_role
+ 
+SELECT s.first_name, s.last_name, s.instagram, leading_role.movie, leading_role.rate AS movie_rating 
+FROM stars AS s
+JOIN leading_role
     ON s.id = leading_role.stars_id;
     
     
-  --what are the actors name and what are there hobbies?  
-SELECT s.first_name, s.last_name, h.name AS hobbie FROM stars AS s
-    JOIN hobbies AS h
+    
+SELECT s.first_name, s.last_name, h.name AS hobbie 
+FROM stars AS s
+JOIN hobbies AS h
     ON s.id = h.person_id;
+
+
+
+SELECT s.first_name, s.last_name, movie, gender 
+FROM stars AS s
+JOIN leading_role AS l
+    ON s.id = l.stars_id
+WHERE gender = "F";
+
+
+
+SELECT s.first_name, s.last_name, movie, gender
+FROM stars AS s
+JOIN leading_role AS l
+    ON s.id = l.stars_id
+WHERE gender = "M";
+
+
+
+SELECT s.first_name, s.last_name, movie, genre
+FROM stars AS s
+JOIN leading_role AS l
+    ON s.id = l.stars_id
+GROUP BY 1,2,3,4
+HAVING genre = "action";
+
+
+
+SELECT s.first_name, s.last_name, h.name
+FROM stars AS s
+JOIN hobbies AS h
+    ON s.id = h.person_id
+WHERE h.name = "workingout";
+
+
+
+SELECT movie, rate,
+CASE
+    WHEN rate >= 6 THEN "Good"
+    WHEN rate >= 5 THEN "Ok"
+    ELSE "Not good"
+    END AS reviews
+FROM leading_role
+ORDER BY rate DESC;
+
+
+
+SELECT movie, rate, genre
+FROM leading_role
+WHERE rate > (SELECT AVG(rate) FROM leading_role)
+ORDER BY rate DESC;
+
+
