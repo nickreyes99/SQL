@@ -132,3 +132,11 @@ WHERE rate > (SELECT AVG(rate) FROM leading_role)
 ORDER BY rate DESC;
 
 
+WITH CTE_movie AS 
+(SELECT movie, rate, genre
+ FROM leading_role
+ WHERE rate > 8
+ )
+ SELECT *
+ FROM CTE_movie;
+
