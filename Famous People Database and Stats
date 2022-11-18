@@ -62,7 +62,8 @@ INSERT INTO hobbies (person_id, name) VALUES (9, 'listening to music');
 
 
 
-SELECT s.first_name, s.last_name, movie, rate AS movie_rating FROM stars AS s
+SELECT s.first_name, s.last_name, movie, rate AS movie_rating 
+FROM stars AS s
 JOIN leading_role 
     ON s.id = leading_role.stars_id
 WHERE movie_rating > 6;
