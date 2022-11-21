@@ -159,6 +159,25 @@ WHERE pts > 1000
 )
 SELECT *
 FROM CTE_seasons_stats;
+
+
+
+
+15. Calculate the average salary for the players in the nba salary data table. 
+Then, for every player with an average salary of 20 million or above, show their name, their average salary, and label them as a “high salary”.
+
+WITH player_average_salary_cte AS (
+SELECT player,
+AVG(season17_18) AS average_salary
+FROM nba_season1718_salary
+GROUP BY player
+)
+SELECT player,
+       average_salary,
+       'High Salary' AS tag
+FROM player_average_salary_cte
+WHERE average_salary >= 20000000;
+
                         
                         
  
