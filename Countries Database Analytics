@@ -158,7 +158,7 @@ GROUP BY country
 )
 SELECT country,
         average_population,
-        'High Populatio' AS tag
+        'High Populatio' AS population_identifier
 FROM country_population_cte
 WHERE average_population >= 30000000;
 
