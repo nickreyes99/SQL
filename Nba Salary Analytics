@@ -174,7 +174,7 @@ GROUP BY player
 )
 SELECT player,
        average_salary,
-       'High Salary' AS tag
+       'High Salary' AS salary_identifier
 FROM player_average_salary_cte
 WHERE average_salary >= 20000000;
 
