@@ -28,6 +28,8 @@ time_signature integer NOT NULL
 
 #Next, I explored the data using the following SQL. 
 
+
+
 1. I determined the avg popularity, danceability, and energy by artist and track
 
 SELECT
@@ -39,12 +41,16 @@ artist_name
 FROM BIT_DB.spotifydata
 GROUP BY artist_name, track_name;
 
+
+
 2. I determined who the Top 10 artists are by popularity
 
 SELECT track_name, artist_name, popularity
 FROM BIT_DB.spotifydata
 ORDER BY popularity desc
 LIMIT 10;
+
+
 
 3. I determined what 10 artist had the loudest song
 
@@ -53,16 +59,36 @@ FROM BIT_DB.Spotifydata
 ORDER BY loudness DESC
 LIMIT 10;
 
+
 4. I determined the artist name, track name, and populairty with the avg popularity of all artists  
 
 SELECT artist_name, track_name, popularity, AVG(popularity) OVER () AS avg_popularity
 FROM BIT_DB.spotifydata;
+
+
 
 5. I determined the artists and their track name whose popularity was greater than the average popularity
 
 SELECT artist_name, track_name, popularity
 FROM BIT_DB.Spotifydata
 WHERE popularity > (SELECT AVG(popularity) FROM BIT_DB.Spotifydata);
+
+
+
+6. Calculate the average popularity for the artists in the Spotify data table. 
+Then, for every artist with an average popularity of 90 or above, show their name, their average popularity, and label them as a “Top Star”.
+
+WITH popularity_average_cte AS (
+SELECT artist_name,
+AVG(popularity) AS average_popularity
+FROM spotifydata
+GROUP BY artist_name
+)
+SELECT artist_name,
+average_popularity,
+'Top Star' AS tag
+FROM popularity_average_cte
+WHERE average_popularity >= 90;
 
 
 
