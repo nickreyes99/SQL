@@ -146,9 +146,21 @@ END AS 'Population density'
 FROM countries_database."countries of the world"
 GROUP BY country;
 
+15. Calculate the average population for the countries in the countries of the world data table. 
+Then, for every country with an average population of 30 million or above, show their name, their average population, and label them as a “High Population”.
 
 
-
+WITH country_population_cte AS (
+SELECT country,
+AVG(population) AS average_population
+FROM "countries of the world"
+GROUP BY country
+)
+SELECT country,
+        average_population,
+        'High Populatio' AS tag
+FROM country_population_cte
+WHERE average_population >= 30000000;
 
 
 
