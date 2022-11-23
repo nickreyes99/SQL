@@ -1,0 +1,76 @@
+# In this SQL code, I created my own home furniture store and querying a data to answer questions regarding pricing.
+
+#Create a table for your store.
+CREATE TABLE furniture_store (
+    id INTEGER PRIMARY KEY,
+    item TEXT,
+    color TEXT,
+    quantity_available INTEGER,
+    quantity_sold INTEGER,
+    price INTEGER
+    );
+
+
+#Insert values for your store.
+INSERT INTO furniture_store VALUES
+    (1, "couch", "black", 4, 5, 200),
+    (2, "coffee table", "dark blue", 7, 14, 50),
+    (3, "dining table", "brown", 5, 3, 50),
+    (4, "dining chairs", "black", 20, 17, 30),
+    (5, "bed frame", "grey", 4, 6, 75),
+    (6, "light fixture", "silver", 5, 5, 60),
+    (7, "love seat", "white", 7, 22, 50),
+    (8, "night stand", "dark blue", 10, 15, 50),
+    (9, "desk", "white", 5, 1, 100),
+    (10, "clothing rack", "brown", 5, 5, 30),
+    (11, "book shelf", "green", 10, 6, 45),
+    (12, "office chair", "black", 7, 2, 55),
+    (13, "drawer set", "tan", 15, 11, 200),
+    (14, "potted plant", "green", 30, 15, 15),
+    (15, "vanity mirror", "gold", 9, 20, 60);
+    
+    
+    
+#Show all information about your furniture stor.    
+SELECT *
+FROM furniture_store;
+
+
+
+
+#Show the cheapest item whitin your store.
+SELECT item, MIN(price) AS cheapest_item
+FROM furniture_store;
+
+
+
+
+#Show the most expenisve item within your store.
+SELECT item, MAX(price) AS most_expensive_item
+FROM furniture_store;
+
+
+
+#Show all the items that are less than $50.
+SELECT item, price
+FROM furniture_store
+WHERE price < 60;
+
+
+
+#Show how many coffee tables are availiable.
+SELECT item, quantity_available
+FROM furniture_store
+WHERE item = "coffee table";
+
+
+
+#Show the most sold item in the store.
+SELECT item, MAX(quantity_sold) AS most_sold_item
+FROM furniture_store;
+
+
+##Show all products, the quantity sold, and gross profit for each product. Order the list of products in descending order by their number of quantity sold.
+SELECT item, quantity_sold, ROUND(quantity_sold*price,2) AS gross_profit
+FROM furniture_store
+ORDER BY quantity_sold DESC;
